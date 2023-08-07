@@ -1,0 +1,3 @@
+vs code repository always taken ADMIN:
+
+just right click on admin and close that repository
