@@ -1,0 +1,210 @@
+GIT: distributed source control systm, open source , large and active community
+
+ALWAYS INTIALIZE GIT REPOSITORY git init
+git version :to check the version of git which u used
+github is a repository (contributors on github means they are working on that project)
+configure git with github: to make communication between git and github
+for first time git login create username & mail :
+git config --global user.name <name> 
+git config --global user.email <email>
+git config --list :to check details of user & mail given
+git <command> --help :to know what that command performs
+
+git workflow:
+(local= working directory (1)+ staging area (2) + repository(.git folder) (3) ) + remote repository github (4)
+ 1 ->add-> 2 ->commit-> 3 ->push-> 4 
+ Git cloning: to you local
+git clone <url> :cloning existing git repository to our system to which disk folder you have to clone so
+git clone <url> <new foldername> :here automatically clone with new folder name in that your cloned project is saved
+you have to move that disk and create a folder where you have to clone it , in this are your project is saved
+ls :to check your cloned repository
+cd <name> : to enter in it
+ls :to check details
+ls -a :to check all with hidden files
+after any change git status check
+git add <filename>  or git add .
+git commit -m "added what changes"
+git push orgin master  :to push github repository
+
+INITIALIZING GIT REPOSITORY: git init
+local repository -> github
+create a repository name in github
+in local system first goto ur project place using powershell
+git init :first intialize this project .git folder
+ls
+git status
+git add .
+git commit -m "add changes"
+git remote add origin <https url>
+git push -u origin master :our project is pushed to github
+
+untracked files ->git add -> staged -> git commit -> unmodified stage (ready for pushed) 
+
+IGNORING FILES:
+.gitignore file should be create
+goto that folder which files you see
+git init
+git status
+ls
+vi .gitignore   :which files you ignored
+# comments it is not consider just your thoughts
+give that file name which you want ignored
+*.txt or *.jar or *.js:to ignore all that files similar like extension
+!main.js  :it means already ignored all .js files but i want this main.js file so write like this
+folder/ :to ignore that folder
+git status
+
+
+git DIFF:
+it shows the difeernce beteen the content of the files but that file should be be added and staged
+same file should be diffent contents then it shows differnce
+
+git log :for history of project
+git log -p : for every commit history is shows latest commit history shows first
+git log -3 :it shows last 3 commit shows
+git log --pretty=oneline
+git log --pretty=full
+git log --pretty=short
+git log --pretty=fuller
+
+
+
+GIT BRANCHING:
+git log
+git log --oneline
+if initiate git in a particular folder
+then create a file it is first commit
+then change the some information in taht file that is second commit
+git log
+git log --oneline
+in latest commit head is shows to master for latest commit
+creating branch:
+git branch <name> :to create new branch
+git log --oneline :now head shows master & new name
+head always shows which branch we are present that points head
+git checkout <name> :to switch to branch
+git log --oneline
+now head points to new name branch which we give
+create new file in new branch , so we add and commit then check git log --oneline 
+now it shows head to new branch and this is new commit, previous commit is now shows to master
+ls
+git checkout master
+git log --oneline : now head shows to master but that our new branch is not visible
+git log --oneline --all :now it shows all branches information and commits
+ls
+now some changes files information in these files
+git status and then git add and commit it
+git log --oneline --all :now check all the commits
+git log --oneline --graph -all :all graphical representation of commits
+creating brach and switch same time: git checkout -b branchname
+ls
+again change something in one file add and commit that file
+git status
+git checkout master
+git log --oneline --graph --all
+now check all the changes in commits which showing how its appearing
+
+in projects any new issue is coming then create a new branch and solve that without affecting the previous or main branch
+git checkout -b email  :any changes in that branch files you can do
+solve the file problem add and commit
+git status
+
+now from which we solved in email branch is merge to master:
+which branch to merge we first goto that branch 
+git checkout master
+ls
+git merge email  :this is fast forward merge to master
+git log --oneline --graph --all :observe all commits
+
+Deleting branch:
+git branch -d email  :it deletes the email barnch
+git log --oneline --graph --all 
+git status
+now if any work pending in previously we created branch we continue that work
+now add and commit that work then afin we merge this branch in masterso first goto master branch thrn
+git checkout master 
+git merge branch(new previos created)  :here recursive merge is happend but not fast forward method
+ 
+Merge conflicts:
+git branch --merge :we can see how many branches are present
+ls
+why mege conflicts occur:when 2 persons are working on 2 branches of same file and in a particular line both are changed som information then they merge it <now it confuse to which one take so merge conflit occurs
+git branch -a ;all branches shows
+ls
+if both branches we same files have diffmatter
+git merge branchname :here merge conflict occurs
+git status
+git log --oneline --graph --all : check once all commits which we still done
+
+Git alias:
+git alias: means it is shortcut to we make for long commands
+suppose git log --oneline --graph --all :for this command we make shortcut
+git config --global alias.anyname"log --oneline --graph --all" :here anyname you can give name which acts as shortcut
+git anyname: which acts as same command as 141 line
+
+REMOTE BRANCHING:
+first clone this repository to ur local system particular disk and folder
+ls
+git remote ; it gives origin
+locally you work shoud do in that particular file what you want to change
+git status
+git log --oneline --graph --all  :check the commit what u changed
+
+git remote :for just origin
+if any changes in working project in github we didnt get automaticallythat changes so we follow below
+{git fetch origin }:to take change from github but didnt apply
+{git merge origin/master}:to apply which we get
+but above 2 commands didnt require we directly give below command to directly get and apply
+git pull orgin master :to take new changes and apply that changes
+after we changes done in local we have to push into servers so we use push command
+before push we again do pull command of line 69
+then use git push origin master: to push the changes to github 
+git log --oneline --all --graph  :latest commits
+always check git status
+
+GIT REBASE:
+git log --oneline --all --graph
+git show 5digits(it 5letters to enter to complete details)
+open paricular folder create a folder of files and then git init and then add and commit
+git status
+git log --oneline --all --graph
+git checkout -b sujith
+in that above created branch create a file and enter in that data add and commit 
+git status
+git log --oneline --all --graph
+git checkot master here change a file data and then add and commit it
+git status
+git log --oneline --all --graph   :observe the commits
+git merge sujith :merge the data
+git log --oneline --all --graph  :observe the commits
+withoutusing git merge by using git rebase we can do it
+git rebase sujith
+git log --oneline --all --graph
+
+GIT STASHING: simply delete
+git status
+ls :some files here
+some changes in files then 
+git stash :to remove that file
+git status :working tree is clean
+git stash list : to see what we delleted
+git stash apply : latest removed again add
+git stash drop :latesh what we unstashed is removed from stash list
+git stash list
+git stash apply stash@{4} :that numbered stashed again applied 
+git stash :only removed files from staging area, here it cant remove untracked files
+git stash -u :is for remove untracked files 
+git stash pop : apply and drop at a time then this command is used
+
+GIT CLEANING:
+ complete delete it never cameback
+git status
+again change any file content 
+git clean always delte only untracked files only
+git clean -f :to remove forcefully the untracked file
+here we cannot delete folders it only delete files
+git clean -f -d :it delete all untracked files and folders also
+git clean -f -d -x : here x is used to delete .ignore files also deletes
+git clean -f -n :first we can see what we want to remove files it shows
+
+git tag -l :it shows any tags
